@@ -39,7 +39,12 @@ else
   readonly DIRECTORY="$1"
 
   for FILE in "$DIRECTORY"/*; do
-    #don't move this script, if it is in the current directory
+    # there are no files to process
+    if [[ "$FILE" == "$DIRECTORY/*" ]]; then
+      continue;
+    fi
+
+    # don't move this script, if it is in the current directory
     if [[ "$FILE" = "$0" ]]; then
       continue;
     fi
@@ -47,14 +52,14 @@ else
     declare file_timestamp
     declare file_iso_8601_date_string
 
-    #determine stat support
+    # determine stat support
     if [[ $(isGnuStatAvailable) == 'true' ]]; then
       file_timestamp=$(stat --format "%Y" "$FILE")
     else
       file_timestamp=$(stat -f "%m" "$FILE")
     fi
 
-    #determine date support
+    # determine date support
     if [[ $(isGnuDateAvailable) == 'true' ]]; then
       file_iso_8601_date_string=$(date -d "@$file_timestamp" +'%Y-%m-%d')
     else
