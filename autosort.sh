@@ -45,7 +45,7 @@ else
     fi
 
     # don't move this script, if it is in the current directory
-    if [[ "$FILE" = "$0" ]]; then
+    if [[ "$FILE" == "$0" ]]; then
       continue;
     fi
 
