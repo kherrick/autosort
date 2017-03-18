@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-function usage() {
-  printf '\nUsage: %s [DIRECTORY]\n' "$0"
-  printf '\nExample: %s ~/files\n' "$0"
+function usage()
+{
+  printf '\n'
+  printf 'Usage: %s [DIRECTORY]\n' "$0"
+  printf '\n'
+  printf 'Example: %s ~/files\n' "$0"
+  printf '\n'
 
   exit 1
 }
@@ -28,13 +32,15 @@ function isGnuDateAvailable()
 readonly DIRECTORY="$1"
 
 if [[ "$DIRECTORY" == '' ]]; then
-  printf '\nNo argument specified.\n'
+  printf '\n'
+  printf 'No argument specified.\n'
 
   usage
 fi
 
 if [[ ! -d "$DIRECTORY" ]]; then
-  printf "\nDirectory doesn't exist.\n"
+  printf '\n'
+  printf "Directory doesn't exist.\n"
 
   usage
 fi
