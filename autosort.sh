@@ -25,18 +25,18 @@ function isGnuDateAvailable()
   fi
 }
 
-if [[ "$1" == '' ]]; then
+readonly DIRECTORY="$1"
+
+if [[ "$DIRECTORY" == '' ]]; then
   printf '\nNo argument specified.\n'
 
   usage
 else
-  if [[ ! -d "$1" ]]; then
+  if [[ ! -d "$DIRECTORY" ]]; then
     printf "\nDirectory doesn't exist.\n"
 
     usage
   fi
-
-  readonly DIRECTORY="$1"
 
   for FILE in "$DIRECTORY"/*; do
     # there are no files to process
